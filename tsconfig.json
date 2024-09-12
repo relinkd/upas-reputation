@@ -5,7 +5,7 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
     "skipLibCheck": true,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -18,7 +18,8 @@
     "types": ["vite/client"],
     "baseUrl": "./src/",
     "outDir": "./dist",
-    "declaration": true
+    "declaration": true,
+    "declarationDir": "./dist"
   },
   "include": ["src"]
 }
