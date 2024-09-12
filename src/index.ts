@@ -1,1 +1,1 @@
-export * from "./actors/reputation_module";
+export * from "./actors";
