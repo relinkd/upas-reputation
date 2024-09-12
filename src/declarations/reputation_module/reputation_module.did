@@ -1,0 +1,29 @@
+type AchievementMetadata = record {
+  achievement_name : text;
+  achievement_description : text;
+};
+type ReputationModuleMetadata = record {
+  issuer_name : text;
+  issuer_description : text;
+  total_issued : nat;
+  achievement_collection : principal;
+};
+type Result = variant { Ok : text; Err : text };
+type Result_1 = variant { Ok : AchievementMetadata; Err : text };
+type Result_2 = variant { Ok : bool; Err : text };
+type Result_3 = variant { Ok; Err : text };
+type Result_4 = variant { Ok : ReputationModuleMetadata; Err : text };
+type Standard = record { url : text; name : text };
+service : {
+  caller : () -> (principal) query;
+  changePermissionCanister : (principal, bool) -> (Result);
+  getAchievementMetadata : (principal) -> (Result_1) query;
+  getPrincipalAchievementSumStatus : (principal, principal) -> (bool) query;
+  getReputationModuleMetadata : () -> (ReputationModuleMetadata) query;
+  getSupportedStandards : () -> (vec Standard) query;
+  isCanisterAllowed : (principal) -> (Result_2) query;
+  isController : () -> (bool) query;
+  issueAchievementToIdentityWallet : (principal) -> (Result);
+  setSupportedStandards : (vec Standard) -> (Result_3);
+  updateReputationModuleMetadata : (ReputationModuleMetadata) -> (Result_4);
+}

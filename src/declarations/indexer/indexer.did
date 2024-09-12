@@ -1,0 +1,27 @@
+type Issuer = record {
+  reputation_module : text;
+  verified : bool;
+  issuer_type : text;
+  name : text;
+  description : text;
+};
+type MetadataValue = variant { Int : int; Nat : nat; Blob : blob; Text : text };
+type Result = variant { Ok : Issuer; Err : text };
+type Result_1 = variant { Ok : vec record { principal; vec nat }; Err : text };
+type Result_2 = variant {
+  Ok : vec record { principal; vec vec record { text; MetadataValue } };
+  Err : text;
+};
+type Result_3 = variant { Ok; Err : text };
+service : {
+  addUnverifiedIssuer : (principal) -> (Result);
+  caller : () -> (principal) query;
+  getIssuer : (principal) -> (Result) query;
+  getIssuersBatch : (opt principal, nat64) -> (
+      vec record { principal; Issuer },
+    ) query;
+  getPrincipalAchievements : (principal) -> (Result_1);
+  getPrincipalAchievementsMetadata : (principal) -> (Result_2);
+  isController : () -> (bool) query;
+  verifyIssuer : (principal, text, record { text; text; text }) -> (Result_3);
+}
