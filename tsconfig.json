@@ -20,7 +20,6 @@
     "outDir": "./dist",
     "declaration": true,
     "declarationMap": true,
-    "declarationDir": "./dist/declarations"
   },
   "include": ["src", "src/declarations"],
 }
